@@ -39,12 +39,13 @@
     <nav class="bg-white shadow-sm px-4 md:px-6 py-3 md:py-4 flex justify-between items-center border-b-2 border-[#B8860B]">
         <div class="flex items-center gap-3 md:gap-4">
             <!-- LOGO KHỐI KHBL -->
-            <!-- Đảm bảo file logo_KHBL.png nằm cùng thư mục với file index.html trên GitHub -->
+            <!-- Đảm bảo file logo_KHBL.jpg nằm cùng thư mục với file index.html trên GitHub -->
             <img 
-                src="logo_KHBL.png" 
+                src="./logo_KHBL.jpg" 
                 alt="Logo KHBL" 
                 class="h-12 md:h-16 w-auto object-contain"
                 title="Khối Khách Hàng Bán Lẻ"
+                onerror="this.onerror=null; this.src='https://placehold.co/120x60/003366/FFFFFF?text=KHBL&font=Montserrat';"
             />
             
             <div class="border-l-2 border-gray-200 pl-3 md:pl-4">
@@ -86,157 +87,188 @@
             </p>
         </div>
 
-        <!-- Project Cards Grid -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 relative z-10">
+        <!-- TAB NAVIGATION -->
+        <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-8 md:mb-12 fade-in-section" style="transition-delay: 200ms;">
+            <button onclick="switchTab('tab-zmp')" id="btn-tab-zmp" class="tab-btn px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all duration-300 bg-[#9A161F] text-white shadow-md border border-[#9A161F]">
+                DỰ ÁN ZMP
+            </button>
+            <button onclick="switchTab('tab-ebrochure')" id="btn-tab-ebrochure" class="tab-btn px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all duration-300 bg-white text-[#003366] border border-gray-200 hover:border-[#B8860B] hover:text-[#B8860B] shadow-sm">
+                E - BROCHURE
+            </button>
+            <button onclick="switchTab('tab-video')" id="btn-tab-video" class="tab-btn px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all duration-300 bg-white text-[#003366] border border-gray-200 hover:border-[#B8860B] hover:text-[#B8860B] shadow-sm">
+                THƯ VIỆN VIDEO
+            </button>
+        </div>
+
+        <!-- TAB CONTENT PANELS -->
+        <div class="relative z-10 max-w-4xl mx-auto pb-8">
             
-            <!-- Card 1: Dự Án ZMP -->
-            <div class="fade-in-section glass-panel rounded-3xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col" style="transition-delay: 300ms;">
-                <div class="p-6 md:p-8 text-center relative overflow-hidden bg-gradient-to-b from-[#F9F1E5] to-white border-b border-amber-100/50">
-                    <div class="absolute top-0 right-0 p-4 opacity-10">
-                        <i data-lucide="target" class="w-[100px] h-[100px] md:w-[120px] md:h-[120px]"></i>
-                    </div>
-                    <h4 class="font-sans-vi text-[#003366] text-xs md:text-sm font-bold tracking-widest uppercase mb-2 md:mb-3">Phát triển Khách Hàng Mới</h4>
-                    <div class="inline-block bg-[#9A161F] text-white px-5 md:px-6 py-2 rounded-full font-serif-vi font-bold text-lg md:text-2xl shadow-md mb-3 md:mb-4 relative z-10">DỰ ÁN ZMP</div>
-                    <p class="text-gray-600 font-medium italic relative z-10 text-sm md:text-base">Giải pháp thu hút KHM out of store</p>
-                </div>
-                <div class="p-6 bg-white flex-grow">
-                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 text-center">Hiệu Quả Kinh Doanh</h5>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-red-50 border border-red-100">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="trending-up" class="w-[18px] h-[18px] text-red-700"></i>
-                                <span class="text-gray-600 text-sm font-medium">Doanh thu</span>
-                            </div>
-                            <span class="font-bold text-2xl text-[#9A161F]">9.4 Tỷ</span>
+            <!-- Tab 1: Dự Án ZMP -->
+            <div id="tab-zmp" class="tab-panel block fade-in-section" style="transition-delay: 300ms;">
+                <div class="glass-panel rounded-3xl overflow-hidden shadow-xl border border-gray-100 flex flex-col">
+                    <!-- Card Header -->
+                    <div class="p-6 md:p-10 text-center relative overflow-hidden bg-gradient-to-b from-[#F9F1E5] to-white border-b border-amber-100/50">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+                            <i data-lucide="target" class="w-[200px] h-[200px] md:w-[300px] md:h-[300px]"></i>
                         </div>
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="eye" class="w-[18px] h-[18px] text-blue-800"></i>
-                                <span class="text-gray-600 text-sm font-medium">Lượt truy cập</span>
+                        <h4 class="font-sans-vi text-[#003366] text-sm md:text-base font-bold tracking-widest uppercase mb-3 md:mb-4">Phát triển Khách Hàng Mới</h4>
+                        <div class="inline-block bg-[#9A161F] text-white px-8 md:px-10 py-3 rounded-full font-serif-vi font-bold text-xl md:text-3xl shadow-md mb-4 md:mb-5 relative z-10">DỰ ÁN ZMP</div>
+                        <p class="text-gray-600 font-medium italic relative z-10 text-base md:text-lg">Giải pháp thu hút KHM out of store</p>
+                    </div>
+                    
+                    <!-- Card Body Side-by-Side -->
+                    <div class="flex flex-col md:flex-row">
+                        <!-- Metrics -->
+                        <div class="w-full md:w-1/2 p-6 md:p-8 bg-white flex flex-col justify-center">
+                            <h5 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 text-center md:text-left">Hiệu Quả Kinh Doanh</h5>
+                            <div class="grid grid-cols-1 gap-5">
+                                <div class="flex items-center justify-between p-4 rounded-xl bg-red-50 border border-red-100">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-white p-2 rounded-lg shadow-sm"><i data-lucide="trending-up" class="w-5 h-5 text-red-700"></i></div>
+                                        <span class="text-gray-700 font-semibold">Doanh thu</span>
+                                    </div>
+                                    <span class="font-bold text-2xl text-[#9A161F]">9.4 Tỷ</span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-white p-2 rounded-lg shadow-sm"><i data-lucide="eye" class="w-5 h-5 text-blue-800"></i></div>
+                                        <span class="text-gray-700 font-semibold">Lượt truy cập</span>
+                                    </div>
+                                    <span class="font-bold text-xl text-gray-800">127.467</span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-white p-2 rounded-lg shadow-sm"><i data-lucide="users" class="w-5 h-5 text-amber-600"></i></div>
+                                        <span class="text-gray-700 font-semibold">KHM Mới</span>
+                                    </div>
+                                    <span class="font-bold text-xl text-gray-800">1.177</span>
+                                </div>
                             </div>
-                            <span class="font-bold text-lg text-gray-800">127.467</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="users" class="w-[18px] h-[18px] text-amber-600"></i>
-                                <span class="text-gray-600 text-sm font-medium">KHM Mới</span>
+                        
+                        <!-- Creative -->
+                        <div class="w-full md:w-1/2 p-6 md:p-8 bg-[#003366] text-white flex flex-col justify-center">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="bg-[#B8860B]/20 p-2 rounded-lg"><i data-lucide="palette" class="w-5 h-5 text-[#B8860B]"></i></div>
+                                <h5 class="font-bold text-sm tracking-widest text-[#B8860B] uppercase">Creative Production</h5>
                             </div>
-                            <span class="font-bold text-lg text-gray-800">1.177</span>
+                            <p class="text-base font-medium mb-6 text-gray-100 leading-relaxed border-b border-blue-800/50 pb-4">Thiết kế full material cho campaign XTT Valentine</p>
+                            <ul class="space-y-4">
+                                <li class="flex items-center gap-3 text-base text-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span><span>9 Visuals chính</span></li>
+                                <li class="flex items-center gap-3 text-base text-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span><span>9 Videos truyền thông</span></li>
+                                <li class="flex items-center gap-3 text-base text-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span><span>30 Artworks đa nền tảng</span></li>
+                                <li class="flex items-center gap-3 text-base text-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span><span>243 Bản Adaptation (Sub-brand/BST)</span></li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="p-6 bg-[#003366] text-white">
-                    <div class="flex items-center gap-2 mb-4">
-                        <i data-lucide="palette" class="w-[18px] h-[18px] text-[#B8860B]"></i>
-                        <h5 class="font-bold text-sm tracking-wide text-[#B8860B] uppercase">Creative Production</h5>
-                    </div>
-                    <p class="text-sm font-medium mb-4 text-gray-200 leading-relaxed border-b border-blue-800 pb-3">Thiết kế full material cho campaign XTT Valentine</p>
-                    <ul class="space-y-2">
-                        <li class="flex items-start gap-2 text-sm text-gray-300"><span class="text-[#B8860B] mt-1">•</span><span>9 Visuals chính</span></li>
-                        <li class="flex items-start gap-2 text-sm text-gray-300"><span class="text-[#B8860B] mt-1">•</span><span>9 Videos truyền thông</span></li>
-                        <li class="flex items-start gap-2 text-sm text-gray-300"><span class="text-[#B8860B] mt-1">•</span><span>30 Artworks đa nền tảng</span></li>
-                        <li class="flex items-start gap-2 text-sm text-gray-300"><span class="text-[#B8860B] mt-1">•</span><span>243 Bản Adaptation (Sub-brand/BST)</span></li>
-                    </ul>
                 </div>
             </div>
 
-            <!-- Card 2: E-Brochure -->
-            <div class="fade-in-section glass-panel rounded-3xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col" style="transition-delay: 500ms;">
-                <div class="p-6 md:p-8 text-center relative overflow-hidden bg-gradient-to-b from-[#F9F1E5] to-white border-b border-amber-100/50">
-                    <div class="absolute top-0 right-0 p-4 opacity-10">
-                        <i data-lucide="book-open" class="w-[100px] h-[100px] md:w-[120px] md:h-[120px]"></i>
-                    </div>
-                    <h4 class="font-sans-vi text-[#003366] text-xs md:text-sm font-bold tracking-widest uppercase mb-2 md:mb-3">Tăng doanh thu hàng mới</h4>
-                    <div class="inline-block bg-[#9A161F] text-white px-5 md:px-6 py-2 rounded-full font-serif-vi font-bold text-lg md:text-2xl shadow-md mb-3 md:mb-4 relative z-10">E - BROCHURE</div>
-                    <p class="text-gray-600 font-medium italic relative z-10 text-sm md:text-base">E-Catalog giới thiệu sản phẩm mới</p>
-                </div>
-                <div class="p-6 bg-white flex-grow">
-                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 text-center">Hiệu Quả Kinh Doanh</h5>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-red-50 border border-red-100">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="eye" class="w-[18px] h-[18px] text-red-700"></i>
-                                <span class="text-gray-600 text-sm font-medium">Lượt truy cập</span>
-                            </div>
-                            <span class="font-bold text-2xl text-[#9A161F]">21.539</span>
+            <!-- Tab 2: E-Brochure -->
+            <div id="tab-ebrochure" class="tab-panel hidden fade-in-section">
+                <div class="glass-panel rounded-3xl overflow-hidden shadow-xl border border-gray-100 flex flex-col">
+                    <div class="p-6 md:p-10 text-center relative overflow-hidden bg-gradient-to-b from-[#F9F1E5] to-white border-b border-amber-100/50">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+                            <i data-lucide="book-open" class="w-[200px] h-[200px] md:w-[300px] md:h-[300px]"></i>
                         </div>
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="award" class="w-[18px] h-[18px] text-blue-800"></i>
-                                <span class="text-gray-600 text-sm font-medium">Sản phẩm mới</span>
+                        <h4 class="font-sans-vi text-[#003366] text-sm md:text-base font-bold tracking-widest uppercase mb-3 md:mb-4">Tăng doanh thu hàng mới</h4>
+                        <div class="inline-block bg-[#9A161F] text-white px-8 md:px-10 py-3 rounded-full font-serif-vi font-bold text-xl md:text-3xl shadow-md mb-4 md:mb-5 relative z-10">E - BROCHURE</div>
+                        <p class="text-gray-600 font-medium italic relative z-10 text-base md:text-lg">E-Catalog giới thiệu sản phẩm mới</p>
+                    </div>
+                    <div class="flex flex-col md:flex-row">
+                        <div class="w-full md:w-1/2 p-6 md:p-8 bg-white flex flex-col justify-center">
+                            <h5 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 text-center md:text-left">Hiệu Quả Kinh Doanh</h5>
+                            <div class="grid grid-cols-1 gap-5">
+                                <div class="flex items-center justify-between p-4 rounded-xl bg-red-50 border border-red-100">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-white p-2 rounded-lg shadow-sm"><i data-lucide="eye" class="w-5 h-5 text-red-700"></i></div>
+                                        <span class="text-gray-700 font-semibold">Lượt truy cập</span>
+                                    </div>
+                                    <span class="font-bold text-2xl text-[#9A161F]">21.539</span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-white p-2 rounded-lg shadow-sm"><i data-lucide="award" class="w-5 h-5 text-blue-800"></i></div>
+                                        <span class="text-gray-700 font-semibold">Sản phẩm mới</span>
+                                    </div>
+                                    <span class="font-bold text-xl text-gray-800">129</span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-white p-2 rounded-lg shadow-sm"><i data-lucide="trending-up" class="w-5 h-5 text-amber-600"></i></div>
+                                        <span class="text-gray-700 font-semibold">Tốc độ ra mắt</span>
+                                    </div>
+                                    <span class="font-bold text-xl text-gray-800">Nhanh</span>
+                                </div>
                             </div>
-                            <span class="font-bold text-lg text-gray-800">129</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="trending-up" class="w-[18px] h-[18px] text-amber-600"></i>
-                                <span class="text-gray-600 text-sm font-medium">Tốc độ ra mắt</span>
+                        <div class="w-full md:w-1/2 p-6 md:p-8 bg-[#003366] text-white flex flex-col justify-center">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="bg-[#B8860B]/20 p-2 rounded-lg"><i data-lucide="palette" class="w-5 h-5 text-[#B8860B]"></i></div>
+                                <h5 class="font-bold text-sm tracking-widest text-[#B8860B] uppercase">Creative Production</h5>
                             </div>
-                            <span class="font-bold text-lg text-gray-800">Nhanh</span>
+                            <p class="text-base font-medium mb-6 text-gray-100 leading-relaxed border-b border-blue-800/50 pb-4">Thiết kế E-Catalog, đưa sản phẩm go to market</p>
+                            <ul class="space-y-4">
+                                <li class="flex items-center gap-3 text-base text-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span><span>Thiết kế UI/UX 32 trang layout</span></li>
+                                <li class="flex items-center gap-3 text-base text-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span><span>Tối ưu hóa hình ảnh 129 mẫu hàng</span></li>
+                                <li class="flex items-center gap-3 text-base text-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span><span>Tương thích đa thiết bị (Mobile/Web)</span></li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="p-6 bg-[#003366] text-white">
-                    <div class="flex items-center gap-2 mb-4">
-                        <i data-lucide="palette" class="w-[18px] h-[18px] text-[#B8860B]"></i>
-                        <h5 class="font-bold text-sm tracking-wide text-[#B8860B] uppercase">Creative Production</h5>
-                    </div>
-                    <p class="text-sm font-medium mb-4 text-gray-200 leading-relaxed border-b border-blue-800 pb-3">Thiết kế E-Catalog, đưa sản phẩm go to market</p>
-                    <ul class="space-y-2">
-                        <li class="flex items-start gap-2 text-sm text-gray-300"><span class="text-[#B8860B] mt-1">•</span><span>Thiết kế UI/UX 32 trang layout</span></li>
-                        <li class="flex items-start gap-2 text-sm text-gray-300"><span class="text-[#B8860B] mt-1">•</span><span>Tối ưu hóa hình ảnh 129 mẫu hàng</span></li>
-                        <li class="flex items-start gap-2 text-sm text-gray-300"><span class="text-[#B8860B] mt-1">•</span><span>Tương thích đa thiết bị (Mobile/Web)</span></li>
-                    </ul>
                 </div>
             </div>
 
-            <!-- Card 3: Thư Viện Video -->
-            <div class="fade-in-section glass-panel rounded-3xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 flex flex-col" style="transition-delay: 700ms;">
-                <div class="p-6 md:p-8 text-center relative overflow-hidden bg-gradient-to-b from-[#F9F1E5] to-white border-b border-amber-100/50">
-                    <div class="absolute top-0 right-0 p-4 opacity-10">
-                        <i data-lucide="video" class="w-[100px] h-[100px] md:w-[120px] md:h-[120px]"></i>
-                    </div>
-                    <h4 class="font-sans-vi text-[#003366] text-xs md:text-sm font-bold tracking-widest uppercase mb-2 md:mb-3">Tăng doanh thu hàng mới</h4>
-                    <div class="inline-block bg-[#9A161F] text-white px-5 md:px-6 py-2 rounded-full font-serif-vi font-bold text-lg md:text-2xl shadow-md mb-3 md:mb-4 relative z-10">THƯ VIỆN VIDEO</div>
-                    <p class="text-gray-600 font-medium italic relative z-10 text-sm md:text-base">Công cụ hỗ trợ TVV tư vấn bán hàng</p>
-                </div>
-                <div class="p-6 bg-white flex-grow">
-                    <h5 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-4 text-center">Hiệu Quả Kinh Doanh</h5>
-                    <div class="grid grid-cols-1 gap-4">
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-red-50 border border-red-100">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="eye" class="w-[18px] h-[18px] text-red-700"></i>
-                                <span class="text-gray-600 text-sm font-medium">Lượt truy cập</span>
-                            </div>
-                            <span class="font-bold text-2xl text-[#9A161F]">1.351</span>
+            <!-- Tab 3: Thư Viện Video -->
+            <div id="tab-video" class="tab-panel hidden fade-in-section">
+                <div class="glass-panel rounded-3xl overflow-hidden shadow-xl border border-gray-100 flex flex-col">
+                    <div class="p-6 md:p-10 text-center relative overflow-hidden bg-gradient-to-b from-[#F9F1E5] to-white border-b border-amber-100/50">
+                        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-5 pointer-events-none">
+                            <i data-lucide="video" class="w-[200px] h-[200px] md:w-[300px] md:h-[300px]"></i>
                         </div>
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="users" class="w-[18px] h-[18px] text-blue-800"></i>
-                                <span class="text-gray-600 text-sm font-medium">TVV sử dụng</span>
+                        <h4 class="font-sans-vi text-[#003366] text-sm md:text-base font-bold tracking-widest uppercase mb-3 md:mb-4">Tăng doanh thu hàng mới</h4>
+                        <div class="inline-block bg-[#9A161F] text-white px-8 md:px-10 py-3 rounded-full font-serif-vi font-bold text-xl md:text-3xl shadow-md mb-4 md:mb-5 relative z-10">THƯ VIỆN VIDEO</div>
+                        <p class="text-gray-600 font-medium italic relative z-10 text-base md:text-lg">Công cụ hỗ trợ TVV tư vấn bán hàng</p>
+                    </div>
+                    <div class="flex flex-col md:flex-row">
+                        <div class="w-full md:w-1/2 p-6 md:p-8 bg-white flex flex-col justify-center">
+                            <h5 class="text-sm font-bold text-gray-400 uppercase tracking-widest mb-6 text-center md:text-left">Hiệu Quả Kinh Doanh</h5>
+                            <div class="grid grid-cols-1 gap-5">
+                                <div class="flex items-center justify-between p-4 rounded-xl bg-red-50 border border-red-100">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-white p-2 rounded-lg shadow-sm"><i data-lucide="eye" class="w-5 h-5 text-red-700"></i></div>
+                                        <span class="text-gray-700 font-semibold">Lượt truy cập</span>
+                                    </div>
+                                    <span class="font-bold text-2xl text-[#9A161F]">1.351</span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-white p-2 rounded-lg shadow-sm"><i data-lucide="users" class="w-5 h-5 text-blue-800"></i></div>
+                                        <span class="text-gray-700 font-semibold">TVV sử dụng</span>
+                                    </div>
+                                    <span class="font-bold text-xl text-gray-800">615</span>
+                                </div>
+                                <div class="flex items-center justify-between p-4 rounded-xl bg-gray-50 border border-gray-100">
+                                    <div class="flex items-center gap-4">
+                                        <div class="bg-white p-2 rounded-lg shadow-sm"><i data-lucide="bar-chart-3" class="w-5 h-5 text-amber-600"></i></div>
+                                        <span class="text-gray-700 font-semibold">Tỷ lệ tương tác</span>
+                                    </div>
+                                    <span class="font-bold text-xl text-gray-800">Cao</span>
+                                </div>
                             </div>
-                            <span class="font-bold text-lg text-gray-800">615</span>
                         </div>
-                        <div class="flex items-center justify-between p-3 rounded-xl bg-gray-50">
-                            <div class="flex items-center gap-3">
-                                <i data-lucide="bar-chart-3" class="w-[18px] h-[18px] text-amber-600"></i>
-                                <span class="text-gray-600 text-sm font-medium">Tỷ lệ tương tác</span>
+                        <div class="w-full md:w-1/2 p-6 md:p-8 bg-[#003366] text-white flex flex-col justify-center">
+                            <div class="flex items-center gap-3 mb-6">
+                                <div class="bg-[#B8860B]/20 p-2 rounded-lg"><i data-lucide="palette" class="w-5 h-5 text-[#B8860B]"></i></div>
+                                <h5 class="font-bold text-sm tracking-widest text-[#B8860B] uppercase">Creative Production</h5>
                             </div>
-                            <span class="font-bold text-lg text-gray-800">Cao</span>
+                            <p class="text-base font-medium mb-6 text-gray-100 leading-relaxed border-b border-blue-800/50 pb-4">Quay dựng, thiết kế, sản xuất video hàng mới</p>
+                            <ul class="space-y-4">
+                                <li class="flex items-center gap-3 text-base text-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span><span>394 Videos (Explainer & Review chi tiết)</span></li>
+                                <li class="flex items-center gap-3 text-base text-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span><span>6 Banners/Videos truyền thông</span></li>
+                                <li class="flex items-center gap-3 text-base text-gray-200"><span class="w-1.5 h-1.5 rounded-full bg-[#B8860B]"></span><span>Kịch bản chốt sale cho từng sản phẩm</span></li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div class="p-6 bg-[#003366] text-white">
-                    <div class="flex items-center gap-2 mb-4">
-                        <i data-lucide="palette" class="w-[18px] h-[18px] text-[#B8860B]"></i>
-                        <h5 class="font-bold text-sm tracking-wide text-[#B8860B] uppercase">Creative Production</h5>
-                    </div>
-                    <p class="text-sm font-medium mb-4 text-gray-200 leading-relaxed border-b border-blue-800 pb-3">Quay dựng, thiết kế, sản xuất video hàng mới</p>
-                    <ul class="space-y-2">
-                        <li class="flex items-start gap-2 text-sm text-gray-300"><span class="text-[#B8860B] mt-1">•</span><span>394 Videos (Explainer & Review chi tiết)</span></li>
-                        <li class="flex items-start gap-2 text-sm text-gray-300"><span class="text-[#B8860B] mt-1">•</span><span>6 Banners/Videos truyền thông</span></li>
-                        <li class="flex items-start gap-2 text-sm text-gray-300"><span class="text-[#B8860B] mt-1">•</span><span>Kịch bản chốt sale cho từng sản phẩm</span></li>
-                    </ul>
                 </div>
             </div>
 
@@ -244,7 +276,7 @@
     </main>
     
     <!-- Footer -->
-    <footer class="mt-20 text-center pb-8">
+    <footer class="mt-12 text-center pb-8">
         <p class="text-gray-400 text-sm font-sans-vi">
             © 2024 PNJ Creative Hub. Báo cáo nội bộ dành cho cấp Quản lý.
         </p>
@@ -263,6 +295,37 @@
                 });
             }, 100);
         });
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            // 1. Hide all panels
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.add('hidden');
+                panel.classList.remove('block', 'is-visible');
+            });
+
+            // 2. Reset all buttons to inactive state
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('bg-[#9A161F]', 'text-white', 'shadow-md', 'border-[#9A161F]');
+                btn.classList.add('bg-white', 'text-[#003366]', 'border-gray-200', 'shadow-sm');
+            });
+
+            // 3. Show selected panel
+            const activePanel = document.getElementById(tabId);
+            activePanel.classList.remove('hidden');
+            activePanel.classList.add('block');
+            
+            // 4. Trigger animation smoothly
+            setTimeout(() => {
+                activePanel.style.transitionDelay = '0ms'; // Chuyển tab thì hiện lên ngay lập tức
+                activePanel.classList.add('is-visible');
+            }, 50);
+
+            // 5. Update selected button to active state
+            const activeBtn = document.getElementById('btn-' + tabId);
+            activeBtn.classList.remove('bg-white', 'text-[#003366]', 'border-gray-200', 'shadow-sm');
+            activeBtn.classList.add('bg-[#9A161F]', 'text-white', 'shadow-md', 'border-[#9A161F]');
+        }
     </script>
 </body>
 </html>
