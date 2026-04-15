@@ -8,6 +8,20 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <!-- CẤU HÌNH TAILWIND ĐỂ ĐỒNG BỘ FONT CHỮ TOÀN TRANG -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -107,6 +121,89 @@
         <!-- ========================================== -->
         <div id="main-projects" class="main-tab-panel block fade-in-section is-visible">
             
+            <!-- Header Section -->
+            <div class="text-center mb-8 md:mb-12">
+                <div class="relative inline-block mb-3 md:mb-4">
+                    <h2 class="font-serif-vi text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#003366] font-bold drop-shadow-lg relative z-10 px-4 leading-tight uppercase">
+                        DỰ ÁN NỔI BẬT
+                    </h2>
+                    <div class="absolute -bottom-1 md:-bottom-2 left-[10%] right-[10%] h-2 md:h-4 bg-[#B8860B]/20 rounded-full blur-md -z-10"></div>
+                </div>
+                <p class="font-serif-vi text-[#003366] text-sm md:text-base lg:text-lg tracking-wide italic">
+                    Tối ưu điểm chạm số và thúc đẩy doanh thu
+                </p>
+            </div>
+
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-10 pb-8">
+                
+                <!-- CARD 1: ZMP -->
+                <div class="bg-white rounded-3xl shadow-xl border-t-4 border-[#B8860B] p-6 sm:p-8 lg:p-10 flex flex-col hover:-translate-y-2 transition-transform duration-300 relative">
+                    <div class="text-center mb-6 md:mb-8">
+                        <p class="font-serif-vi text-sm sm:text-base font-bold tracking-widest uppercase text-[#003366] mb-3">Phát triển KHM</p>
+                        <div class="bg-gradient-to-r from-transparent via-[#F9F1E5] to-transparent py-4 px-2 rounded-2xl border border-[#B8860B]/30 shadow-sm">
+                            <h3 class="font-serif-vi font-extrabold text-[#003366] text-2xl sm:text-3xl lg:text-4xl mb-1 drop-shadow-sm">ZMP <span class="text-lg sm:text-xl font-medium">(CT 8.3 và SN PNJ)</span></h3>
+                            <p class="font-serif-vi text-sm sm:text-base text-[#9A161F] italic font-medium">Giải pháp thu hút KHM out of store</p>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 gap-6 mb-8 text-center flex-1 items-center justify-center">
+                        <div>
+                            <span class="text-5xl sm:text-6xl lg:text-7xl font-serif-vi font-bold text-[#9A161F] block drop-shadow-sm">53.735</span>
+                            <span class="font-sans-vi text-sm font-semibold text-[#003366] mt-1 block">Lượt tham gia</span>
+                        </div>
+                        <div>
+                            <span class="text-5xl sm:text-6xl lg:text-7xl font-serif-vi font-bold text-[#9A161F] block drop-shadow-sm">6.12 tỷ</span>
+                            <span class="font-sans-vi text-sm font-semibold text-[#003366] mt-1 block">Doanh thu</span>
+                        </div>
+                        <div>
+                            <span class="text-5xl sm:text-6xl lg:text-7xl font-serif-vi font-bold text-[#9A161F] block drop-shadow-sm">733</span>
+                            <span class="font-sans-vi text-sm font-semibold text-[#003366] mt-1 block">KHM + KHC</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-6 border-t border-gray-200">
+                        <p class="font-sans-vi text-sm sm:text-base font-semibold text-[#003366] mb-4 text-center">Thiết kế full material cho campaign CT 8.3 và SN PNJ 38 năm</p>
+                        <div class="flex justify-center">
+                            <ul class="font-sans-vi text-sm sm:text-base text-[#003366] space-y-2.5 font-medium text-left inline-block italic">
+                                <li class="flex items-center gap-3"><i data-lucide="image" class="w-4 h-4 text-[#B8860B] shrink-0 not-italic"></i> <span><strong class="font-bold">6</strong> visuals</span></li>
+                                <li class="flex items-center gap-3"><i data-lucide="video" class="w-4 h-4 text-[#B8860B] shrink-0 not-italic"></i> <span><strong class="font-bold">8</strong> videos</span></li>
+                                <li class="flex items-center gap-3"><i data-lucide="pen-tool" class="w-4 h-4 text-[#B8860B] shrink-0 not-italic"></i> <span><strong class="font-bold">20</strong> Artworks</span></li>
+                                <li class="flex items-start gap-3"><i data-lucide="layers" class="w-4 h-4 text-[#B8860B] shrink-0 mt-1 not-italic"></i> <span><strong class="font-bold">162</strong> adaptation (Sub - brand /BST) <br></span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD 2: E-BROCHURE -->
+                <div class="bg-white rounded-3xl shadow-xl border-t-4 border-[#9A161F] p-6 sm:p-8 lg:p-10 flex flex-col hover:-translate-y-2 transition-transform duration-300 relative">
+                    <div class="text-center mb-6 md:mb-8">
+                        <p class="font-serif-vi text-sm sm:text-base font-bold tracking-widest uppercase text-[#003366] mb-3">Tăng doanh thu hàng mới</p>
+                        <div class="bg-gradient-to-r from-transparent via-[#F9F1E5] to-transparent py-4 px-2 rounded-2xl border border-[#B8860B]/30 shadow-sm">
+                            <h3 class="font-serif-vi font-extrabold text-[#003366] text-2xl sm:text-3xl lg:text-4xl mb-1 drop-shadow-sm">E - BROCHURE <span class="text-lg sm:text-xl font-medium">(SN PNJ 38)</span></h3>
+                            <p class="font-serif-vi text-sm sm:text-base text-[#9A161F] italic font-medium">(Tích hợp Catalog và Thư viện Video)</p>
+                        </div>
+                    </div>
+
+                    <div class="flex-1 flex items-center justify-center py-10 md:py-16">
+                        <div class="text-center">
+                            <span class="text-6xl sm:text-7xl lg:text-[5rem] font-serif-vi font-bold text-[#9A161F] block drop-shadow-md leading-tight">Release:<br/>16/4</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-6 border-t border-gray-200">
+                        <p class="font-sans-vi text-sm sm:text-base font-semibold text-[#003366] mb-4 text-center">Thiết kế full material cho E-Brochure (layout, KV, Video,...)</p>
+                        <div class="flex justify-center">
+                            <ul class="font-sans-vi text-sm sm:text-base text-[#003366] space-y-3 font-medium text-left inline-block italic">
+                                <li class="flex items-center gap-3"><i data-lucide="layout-template" class="w-5 h-5 text-[#B8860B] shrink-0 not-italic"></i> <span class="text-lg"><strong class="font-bold">54</strong> visual thiết kế</span></li>
+                                <li class="flex items-center gap-3"><i data-lucide="box" class="w-5 h-5 text-[#B8860B] shrink-0 not-italic"></i> <span class="text-lg"><strong class="font-bold">186</strong> mẫu hàng mới</span></li>
+                                <li class="flex items-center gap-3"><i data-lucide="film" class="w-5 h-5 text-[#B8860B] shrink-0 not-italic"></i> <span class="text-lg"><strong class="font-bold">59</strong> videos</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
         <!-- ========================================== -->
