@@ -16,6 +16,11 @@
                     fontFamily: {
                         sans: ['Montserrat', 'sans-serif'],
                         serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        pnjBlue: '#003366',
+                        pnjGold: '#B8860B',
+                        pnjRed: '#9A161F',
                     }
                 }
             }
@@ -53,6 +58,48 @@
 
         .custom-scrollbar-container::-webkit-scrollbar { display: none; }
         .custom-scrollbar-container { -ms-overflow-style: none; scrollbar-width: none; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Sub-tab active state */
+        .sub-tab-active {
+            background-color: #003366 !important;
+            color: white !important;
+            border-color: #003366 !important;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .zalo-card-btn {
+            background: white;
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+        .zalo-card-btn:hover {
+            border-color: #003366;
+            background: #f8fafc;
+        }
+
+        .floating-nav-btn {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(4px);
+            border: 1px solid #e5e7eb;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.2s ease;
+            z-index: 20;
+        }
+        .floating-nav-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            background: white;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); opacity: 0.5; }
+            50% { transform: scale(1.05); opacity: 0.2; }
+            100% { transform: scale(0.95); opacity: 0.5; }
+        }
+        .pulse-circle { animation: pulse-ring 3s infinite ease-in-out; }
+        .animate-spin-slow { animation: spin 12s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     </style>
 </head>
 <body class="min-h-screen bg-[#FCF9F2] font-sans selection:bg-[#B8860B] selection:text-white pb-12 overflow-x-hidden">
@@ -282,15 +329,14 @@
                                 <li class="pl-6 text-xs sm:text-sm lg:text-base text-gray-600 list-disc list-inside uppercase">Poster thông báo</li>
                             </ul>
                             
-                            <!-- Thư viện ảnh: Đã tăng kích thước mobile (w-[90%]) -->
+                            <!-- Thư viện ảnh -->
                             <div class="relative w-full mt-auto mb-4 group">
-                                <button onclick="document.getElementById('khcs-scroll-container').scrollBy({left: -200, behavior: 'smooth'})" 
+                                <button onclick="scrollSlider('khcs-scroll-container', 'left')" 
                                     class="absolute left-[-12px] sm:left-[-16px] top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-[0_2px_8px_rgba(0,0,0,0.15)] rounded-full p-1.5 text-[#003366] hover:bg-[#003366] hover:text-white transition-all focus:outline-none opacity-90 hover:opacity-100 flex items-center justify-center cursor-pointer">
                                     <i data-lucide="chevron-left" class="w-4 h-4 md:w-5 md:h-5"></i>
                                 </button>
 
                                 <div id="khcs-scroll-container" class="w-full overflow-x-auto flex gap-4 pb-3 pt-1 px-1 custom-scrollbar-container scroll-smooth snap-x snap-mandatory">
-                                    <!-- Hình ảnh phủ rộng mobile -->
                                     <img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776233778/rqkvyjn21kwt5iikizqk.png" alt="KHCS 1" class="w-[90%] sm:w-auto h-auto sm:h-24 md:h-28 rounded-lg shadow-sm border border-gray-200 object-cover shrink-0 snap-center">
                                     <img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776231540/ujdka8rxz5qvknmjjlwh.jpg" alt="KHCS 2" class="w-[90%] sm:w-auto h-auto sm:h-24 md:h-28 rounded-lg shadow-sm border border-gray-200 object-cover shrink-0 snap-center">
                                     <img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776231540/zlm0z25hrwm6yndrikql.jpg" alt="KHCS 3" class="w-[90%] sm:w-auto h-auto sm:h-24 md:h-28 rounded-lg shadow-sm border border-gray-200 object-cover shrink-0 snap-center">
@@ -298,7 +344,7 @@
                                     <img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776231540/vjsx0sqt6493hf4rc6wy.jpg" alt="KHCS 5" class="w-[90%] sm:w-auto h-auto sm:h-24 md:h-28 rounded-lg shadow-sm border border-gray-200 object-cover shrink-0 snap-center">
                                 </div>
 
-                                <button onclick="document.getElementById('khcs-scroll-container').scrollBy({left: 200, behavior: 'smooth'})" 
+                                <button onclick="scrollSlider('khcs-scroll-container', 'right')" 
                                     class="absolute right-[-12px] sm:right-[-16px] top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-[0_2px_8px_rgba(0,0,0,0.15)] rounded-full p-1.5 text-[#003366] hover:bg-[#003366] hover:text-white transition-all focus:outline-none opacity-90 hover:opacity-100 flex items-center justify-center cursor-pointer">
                                     <i data-lucide="chevron-right" class="w-4 h-4 md:w-5 md:h-5"></i>
                                 </button>
@@ -335,7 +381,7 @@
                             </ul>
                             
                             <div class="relative w-full mt-auto pt-2 group">
-                                <button onclick="document.getElementById('omni-scroll-container').scrollBy({left: -200, behavior: 'smooth'})" 
+                                <button onclick="scrollSlider('omni-scroll-container', 'left')" 
                                     class="absolute left-[-12px] sm:left-[-16px] top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-[0_2px_8px_rgba(0,0,0,0.15)] rounded-full p-1.5 text-[#003366] hover:bg-[#003366] hover:text-white transition-all focus:outline-none opacity-90 hover:opacity-100 flex items-center justify-center cursor-pointer">
                                     <i data-lucide="chevron-left" class="w-4 h-4 md:w-5 md:h-5"></i>
                                 </button>
@@ -347,7 +393,7 @@
                                     <img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776234673/udidjvedowqyq7aaackq.jpg" alt="OMNI MKT 4" class="w-[90%] sm:w-auto h-auto sm:h-24 md:h-28 rounded-lg shadow-sm border border-gray-200 object-cover shrink-0 snap-center">
                                 </div>
 
-                                <button onclick="document.getElementById('omni-scroll-container').scrollBy({left: 200, behavior: 'smooth'})" 
+                                <button onclick="scrollSlider('omni-scroll-container', 'right')" 
                                     class="absolute right-[-12px] sm:right-[-16px] top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-[0_2px_8px_rgba(0,0,0,0.15)] rounded-full p-1.5 text-[#003366] hover:bg-[#003366] hover:text-white transition-all focus:outline-none opacity-90 hover:opacity-100 flex items-center justify-center cursor-pointer">
                                     <i data-lucide="chevron-right" class="w-4 h-4 md:w-5 md:h-5"></i>
                                 </button>
@@ -416,7 +462,7 @@
                             </ul>
                             
                             <div class="relative w-full mt-auto pt-2 group">
-                                <button onclick="document.getElementById('pns-scroll-container').scrollBy({left: -200, behavior: 'smooth'})" 
+                                <button onclick="scrollSlider('pns-scroll-container', 'left')" 
                                     class="absolute left-[-12px] sm:left-[-16px] top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-[0_2px_8px_rgba(0,0,0,0.15)] rounded-full p-1.5 text-[#003366] hover:bg-[#003366] hover:text-white transition-all focus:outline-none opacity-90 hover:opacity-100 flex items-center justify-center cursor-pointer">
                                     <i data-lucide="chevron-left" class="w-4 h-4 md:w-5 md:h-5"></i>
                                 </button>
@@ -428,7 +474,7 @@
                                     <img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776237273/rsofnruaztrerkkj8s5q.png" alt="PNS 4" class="w-[90%] sm:w-auto h-auto sm:h-24 md:h-28 rounded-lg shadow-sm border border-gray-200 object-cover shrink-0 snap-center">
                                 </div>
 
-                                <button onclick="document.getElementById('pns-scroll-container').scrollBy({left: 200, behavior: 'smooth'})" 
+                                <button onclick="scrollSlider('pns-scroll-container', 'right')" 
                                     class="absolute right-[-12px] sm:right-[-16px] top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-[0_2px_8px_rgba(0,0,0,0.15)] rounded-full p-1.5 text-[#003366] hover:bg-[#003366] hover:text-white transition-all focus:outline-none opacity-90 hover:opacity-100 flex items-center justify-center cursor-pointer">
                                     <i data-lucide="chevron-right" class="w-4 h-4 md:w-5 md:h-5"></i>
                                 </button>
@@ -453,7 +499,7 @@
                             </div>
                             
                             <div class="relative w-full mt-2 group">
-                                <button onclick="document.getElementById('retail-scroll-container').scrollBy({left: -200, behavior: 'smooth'})" 
+                                <button onclick="scrollSlider('retail-scroll-container', 'left')" 
                                     class="absolute left-[-12px] sm:left-[-16px] top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-[0_2px_8px_rgba(0,0,0,0.15)] rounded-full p-1.5 text-[#003366] hover:bg-[#003366] hover:text-white transition-all focus:outline-none opacity-90 hover:opacity-100 flex items-center justify-center cursor-pointer">
                                     <i data-lucide="chevron-left" class="w-4 h-4 md:w-5 md:h-5"></i>
                                 </button>
@@ -466,7 +512,7 @@
                                     <img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776229692/cagvzw95wqgs4wrf4wil.jpg" alt="Retail POSM 5" class="w-[90%] sm:w-auto h-auto sm:h-24 md:h-28 rounded-lg shadow-sm border border-gray-200 object-cover shrink-0 snap-center">
                                 </div>
 
-                                <button onclick="document.getElementById('retail-scroll-container').scrollBy({left: 200, behavior: 'smooth'})" 
+                                <button onclick="scrollSlider('retail-scroll-container', 'right')" 
                                     class="absolute right-[-12px] sm:right-[-16px] top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-[0_2px_8px_rgba(0,0,0,0.15)] rounded-full p-1.5 text-[#003366] hover:bg-[#003366] hover:text-white transition-all focus:outline-none opacity-90 hover:opacity-100 flex items-center justify-center cursor-pointer">
                                     <i data-lucide="chevron-right" class="w-4 h-4 md:w-5 md:h-5"></i>
                                 </button>
@@ -493,7 +539,7 @@
                             </ul>
                             
                             <div class="relative w-full mt-2 group">
-                                <button onclick="document.getElementById('cxcs-scroll-container').scrollBy({left: -200, behavior: 'smooth'})" 
+                                <button onclick="scrollSlider('cxcs-scroll-container', 'left')" 
                                     class="absolute left-[-12px] sm:left-[-16px] top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-[0_2px_8px_rgba(0,0,0,0.15)] rounded-full p-1.5 text-[#003366] hover:bg-[#003366] hover:text-white transition-all focus:outline-none opacity-90 hover:opacity-100 flex items-center justify-center cursor-pointer">
                                     <i data-lucide="chevron-left" class="w-4 h-4 md:w-5 md:h-5"></i>
                                 </button>
@@ -506,7 +552,7 @@
                                     <img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776237280/umztrcdhhdzuabahq89g.jpg" alt="CXCS 2" class="w-[90%] sm:w-auto h-auto sm:h-24 md:h-28 rounded-lg shadow-sm border border-gray-200 object-cover shrink-0 snap-center">
                                 </div>
 
-                                <button onclick="document.getElementById('cxcs-scroll-container').scrollBy({left: 200, behavior: 'smooth'})" 
+                                <button onclick="scrollSlider('cxcs-scroll-container', 'right')" 
                                     class="absolute right-[-12px] sm:right-[-16px] top-[40%] -translate-y-1/2 z-10 bg-white border border-gray-200 shadow-[0_2px_8px_rgba(0,0,0,0.15)] rounded-full p-1.5 text-[#003366] hover:bg-[#003366] hover:text-white transition-all focus:outline-none opacity-90 hover:opacity-100 flex items-center justify-center cursor-pointer">
                                     <i data-lucide="chevron-right" class="w-4 h-4 md:w-5 md:h-5"></i>
                                 </button>
@@ -528,8 +574,6 @@
                     </h2>
                     <div class="absolute -bottom-1 md:-bottom-2 left-[10%] right-[10%] h-2 md:h-4 bg-[#B8860B]/20 rounded-full blur-md -z-10"></div>
                 </div>
-                
-                </p>
                 
                 <div class="flex items-center justify-center mb-5 md:mb-6 px-2">
                     <div class="bg-gradient-to-r from-[#B8860B]/10 via-[#F9F1E5] to-[#B8860B]/10 px-4 sm:px-8 md:px-12 py-3 md:py-4 rounded-[2rem] border border-[#B8860B]/40 shadow-sm max-w-full">
@@ -760,7 +804,404 @@
     <!-- TEAM CONTENT PANEL -->
     <!-- ========================================== -->
     <div id="team-content" class="team-panel hidden fade-in-section">
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <!-- SUB-TABS NAVIGATION -->
+            <div class="flex flex-wrap justify-center gap-2 md:gap-4 mb-10">
+                <button onclick="switchSubTab('sub-zalo')" id="btn-sub-zalo" class="sub-tab-active flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs md:text-sm transition-all border border-gray-200">
+                    <i data-lucide="message-square" class="w-4 h-4"></i> ZALO MINI PROGRAM
+                </button>
+                <button onclick="switchSubTab('sub-hub')" id="btn-sub-hub" class="bg-white text-[#003366] flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs md:text-sm transition-all border border-gray-200 hover:border-[#003366] hover:shadow-sm">
+                    <i data-lucide="layers" class="w-4 h-4"></i> VAI TRÒ CREATIVE HUB
+                </button>
+                <button onclick="switchSubTab('sub-gtm')" id="btn-sub-gtm" class="bg-white text-[#003366] flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-xs md:text-sm transition-all border border-gray-200 hover:border-[#003366] hover:shadow-sm">
+                    <i data-lucide="trending-up" class="w-4 h-4"></i> HỖ TRỢ TRUYỀN THÔNG GTM
+                </button>
+            </div>
 
+            <!-- SUB-TAB 1: ZALO MINI PROGRAM -->
+            <section id="sub-zalo" class="sub-content block fade-in-section is-visible">
+                <div class="text-center mb-10 px-2">
+                    <h2 class="font-serif-vi text-2xl md:text-4xl text-[#003366] font-bold uppercase mb-2">Zalo Mini Program</h2>
+                    <p class="font-sans-vi text-[#B8860B] font-bold text-[10px] md:text-sm tracking-widest uppercase">Giải pháp phát triển khách hàng mới Out-of-store</p>
+                </div>
+
+                <div class="bg-white rounded-[2.5rem] shadow-xl border border-gray-100 p-6 md:p-10">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 items-stretch">
+                        <!-- Cột 1: Cá nhân hóa thiệp -->
+                        <div class="space-y-6 pt-0 flex flex-col">
+                            <div class="border-l-4 border-[#003366] pl-4">
+                                <h3 class="font-bold text-[#003366] text-sm md:text-base uppercase tracking-wide leading-tight">Cá nhân hóa nội dung thiệp 8/3</h3>
+                                <div class="text-[12px] text-gray-500 mt-2 font-medium leading-relaxed">
+                                    • Xây dựng hệ thống thiệp <span class="text-[#003366] font-bold">theo từng đối tượng</span><br>
+                                    • Giúp khách hàng <span class="text-[#003366] font-bold">chọn nhanh - đúng nhu cầu - cảm xúc</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex flex-col gap-2.5 mt-6">
+                                <div class="zalo-card-btn w-full py-2.5 px-4 rounded-xl text-[#003366] font-bold text-[11px] md:text-xs flex items-center justify-between cursor-pointer">
+                                    <span>Gửi tặng Mẹ</span> <i data-lucide="chevron-right" class="w-4 h-4 opacity-40"></i>
+                                </div>
+                                <div class="zalo-card-btn w-full py-2.5 px-4 rounded-xl text-[#003366] font-bold text-[11px] md:text-xs flex items-center justify-between cursor-pointer">
+                                    <span>Gửi tặng Vợ</span> <i data-lucide="chevron-right" class="w-4 h-4 opacity-40"></i>
+                                </div>
+                                <div class="zalo-card-btn w-full py-2.5 px-4 rounded-xl text-[#003366] font-bold text-[11px] md:text-xs flex items-center justify-between cursor-pointer">
+                                    <span>Gửi tặng Người yêu</span> <i data-lucide="chevron-right" class="w-4 h-4 opacity-40"></i>
+                                </div>
+                                <div class="zalo-card-btn w-full py-2.5 px-4 rounded-xl text-[#003366] font-bold text-[11px] md:text-xs flex items-center justify-between cursor-pointer">
+                                    <span>Gửi Chị & Em gái</span> <i data-lucide="chevron-right" class="w-4 h-4 opacity-40"></i>
+                                </div>
+                                <div class="zalo-card-btn w-full py-2.5 px-4 rounded-xl text-[#003366] font-bold text-[11px] md:text-xs flex items-center justify-between cursor-pointer">
+                                    <span>Tặng bản thân</span> <i data-lucide="chevron-right" class="w-4 h-4 opacity-40"></i>
+                                </div>
+                            </div>
+
+                            <div class="pt-6 border-t border-gray-100 mt-6">
+                                <p class="text-[9px] text-[#B8860B] font-bold uppercase tracking-widest flex items-center gap-1 mb-4">
+                                    <i data-lucide="image" class="w-3 h-3"></i> Mẫu thiệp tham khảo
+                                </p>
+                                <div class="relative group/slider">
+                                    <button onclick="scrollSlider('card-slider', 'left')" class="floating-nav-btn absolute -left-3 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-[#003366]">
+                                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                                    </button>
+                                    <div id="card-slider" class="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth">
+                                        <div class="min-w-full snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/gt8vvaltbmesnyfrbezx.png" class="w-full aspect-video object-cover rounded-xl border border-gray-100 shadow-sm" /></div>
+                                        <div class="min-w-full snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249187/dfbu1aapk8klvfnyfzq8.png" class="w-full aspect-video object-cover rounded-xl border border-gray-100 shadow-sm" /></div>
+                                        <div class="min-w-full snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/wbe0ivywaaexppmg4izm.png" class="w-full aspect-video object-cover rounded-xl border border-gray-100 shadow-sm" /></div>
+                                    </div>
+                                    <button onclick="scrollSlider('card-slider', 'right')" class="floating-nav-btn absolute -right-3 top-1/2 -translate-y-1/2 w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center text-[#003366]">
+                                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cột 2: May đo nội dung -->
+                        <div class="space-y-6 pt-0 flex flex-col">
+                            <div class="border-l-4 border-[#003366] pl-4">
+                                <h3 class="font-bold text-[#003366] text-sm md:text-base uppercase tracking-wide leading-tight">May đo nội dung cho Brand và 4 sub-Brand</h3>
+                                <div class="text-[12px] text-gray-500 mt-2 font-medium leading-relaxed">
+                                    • Adapt content theo từng <span class="text-[#003366] font-bold">brand/sub-brand</span><br>
+                                    • Đảm bảo<span class="text-[#003366] font-bold"> đúng tone & đúng tệp</span> khách hàng 
+                                </div>
+                            </div>
+                            
+                            <div class="bg-gray-50/50 p-4 rounded-[2rem] border border-gray-100 shadow-inner mt-6">
+                                <div class="flex flex-col gap-3">
+                                    <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center min-h-[60px]"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776076531/kvez8igf06wdf18lzoli.png" class="max-h-8 w-auto"></div>
+                                    <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center min-h-[60px]"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776076532/uijfwjpzdiu777yz9rxu.png" class="max-h-8 w-auto"></div>
+                                    <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center min-h-[60px]"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776250121/cdvbhygikdmapymxdpav.png" class="max-h-8 w-auto"></div>
+                                    <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100 flex items-center justify-center min-h-[60px]"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776250121/vytmlx50unyywfjiu0pn.png" class="max-h-8 w-auto"></div>
+                                    <div class="bg-white p-3 rounded-xl shadow-sm border border-pnjGold/20 flex items-center justify-center min-h-[140px]"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776075155/zpw3nmwqd6ynu3hmodwc.png" class="max-h-20 w-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cột 3: Hiệu quả lan tỏa -->
+                        <div class="bg-[#F9F1E5] rounded-[2.5rem] px-8 py-10 text-center shadow-inner h-full flex flex-col border border-[#B8860B]/10">
+                            <div class="flex flex-col space-y-8 mb-8">
+                                <p class="font-bold text-[#003366] text-[11px] uppercase tracking-[0.2em]">HIỆU QUẢ LAN TỎA</p>
+                                <div class="flex flex-col items-center group">
+                                    <span class="text-4xl md:text-5xl font-number text-[#9A161F] transition-transform group-hover:scale-105">32,902</span>
+                                    <p class="font-bold text-[#003366] text-[10px] md:text-xs uppercase tracking-wide mt-2">SĐT khách hàng tiềm năng</p>
+                                    <div class="w-8 h-0.5 bg-[#B8860B]/30 mt-3"></div>
+                                </div>
+                                <div class="flex flex-col items-center group">
+                                    <span class="text-4xl md:text-5xl font-number text-[#9A161F] transition-transform group-hover:scale-105">8.535</span>
+                                    <div class="flex items-center gap-2 mt-2">
+                                        <p class="font-bold text-[#003366] text-[10px] md:text-xs uppercase tracking-wide">Lượt chia sẻ hoạt động</p>
+                                        <div class="bg-white p-1 rounded-md shadow-sm"><i data-lucide="share-2" class="w-3 h-3 text-[#B8860B]"></i></div>
+                                    </div>
+                                    <div class="w-8 h-0.5 bg-[#B8860B]/30 mt-3"></div>
+                                </div>
+                            </div>
+
+                            <div class="pt-6 border-t border-[#B8860B]/20">
+                                <p class="text-[#9A161F] font-bold text-[10px] md:text-xs italic tracking-tight mb-5">Số liệu theo Chương Trình 8.3</p>
+                                <div class="flex flex-col items-start w-full px-2 space-y-4">
+                                    <div class="flex items-center gap-2.5 text-pnjBlue font-bold bg-white/50 px-4 py-2 rounded-full border border-pnjGold/10">
+                                        <i data-lucide="trending-up" class="w-5 h-5 text-pnjRed"></i>
+                                        <span class="uppercase tracking-[0.15em] text-xs">Organic Growth</span>
+                                    </div>
+                                    <div class="text-left space-y-3 pl-2">
+                                        <div class="flex items-start gap-2.5">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-pnjRed mt-1.5 shrink-0"></div>
+                                            <p class="text-[11px] md:text-sm text-gray-700 font-semibold leading-relaxed">Thiết kế trải nghiệm cá nhân hóa cho người dùng.</p>
+                                        </div>
+                                        <div class="flex items-start gap-2.5">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-pnjRed mt-1.5 shrink-0"></div>
+                                            <p class="text-[11px] md:text-sm text-gray-700 font-semibold leading-relaxed">Đảm bảo tính nhất quán & phù hợp across brands.</p>
+                                        </div>
+                                        <div class="flex items-start gap-2.5">
+                                            <div class="w-1.5 h-1.5 rounded-full bg-pnjRed mt-1.5 shrink-0"></div>
+                                            <p class="text-[11px] md:text-sm text-gray-700 font-semibold leading-relaxed">Góp phần trực tiếp vào hiệu quả lan tỏa và tương tác của campaign.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SUB-TAB 2: VAI TRÒ CREATIVE HUB -->
+            <section id="sub-hub" class="sub-content hidden fade-in-section">
+                <div class="text-center mb-10">
+                    <h2 class="font-serif-vi text-2xl md:text-4xl text-[#003366] font-bold uppercase mb-2">VAI TRÒ CREATIVE HUB CỦA K.KHBL</h2>
+                    <p class="font-sans-vi text-[#B8860B] font-bold text-xs md:text-sm tracking-widest uppercase italic leading-relaxed">ĐẢM BẢO BRAND CONSISTENCY & TỐI ƯU HIỆU QUẢ TRUYỀN THÔNG ĐA KÊNH</p>
+                </div>
+                
+                <div class="flex flex-col gap-10">
+                    <div class="bg-white rounded-[2.5rem] p-10 md:p-20 shadow-xl border border-gray-100 flex flex-col items-center overflow-hidden">
+                        
+                        <div class="text-center mb-12">
+                            <h3 class="font-bold text-[#003366] text-xl md:text-2xl uppercase tracking-[0.2em] mb-4">Sơ đồ điều phối Hub sáng tạo</h3>
+                            <div class="w-32 h-1.5 bg-[#B8860B]/20 mx-auto rounded-full"></div>
+                        </div>
+                        
+                        <!-- Bố cục tỏa tâm -->
+                        <div class="relative w-full max-w-6xl min-h-[750px] flex items-center justify-center">
+                            
+                            <!-- Connecting SVG Lines Overlay -->
+                            <svg class="absolute inset-0 w-full h-full pointer-events-none hidden md:block" style="z-index: 10;" viewBox="0 0 1000 1000">
+                                <defs>
+                                    <linearGradient id="lineGradHub" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#003366" />
+                                        <stop offset="100%" stop-color="#B8860B" />
+                                    </linearGradient>
+                                    <marker id="hubArrow" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+                                        <polygon points="0 0, 10 3.5, 0 7" fill="#B8860B" />
+                                    </marker>
+                                </defs>
+                                
+                                <path class="connecting-path" d="M 430 430 Q 300 350, 180 280" stroke="url(#lineGradHub)" stroke-width="3" fill="none" marker-end="url(#hubArrow)" />
+                                <path class="connecting-path" d="M 570 430 Q 700 350, 820 280" stroke="url(#lineGradHub)" stroke-width="3" fill="none" marker-end="url(#hubArrow)" />
+                                <path class="connecting-path" d="M 430 570 Q 300 650, 180 720" stroke="url(#lineGradHub)" stroke-width="3" fill="none" marker-end="url(#hubArrow)" />
+                                <path class="connecting-path" d="M 570 570 Q 700 650, 820 720" stroke="url(#lineGradHub)" stroke-width="3" fill="none" marker-end="url(#hubArrow)" />
+                            </svg>
+
+                            <!-- Central Hub Circle -->
+                            <div class="absolute z-20 flex items-center justify-center">
+                                <div class="absolute w-[300px] h-[300px] md:w-[420px] md:h-[420px] border-2 border-[#B8860B]/20 rounded-full pulse-circle"></div>
+                                <div class="absolute w-[340px] h-[340px] md:w-[460px] md:h-[460px] border border-dashed border-[#B8860B]/10 rounded-full animate-spin-slow"></div>
+                                
+                                <div class="z-20 w-48 h-48 md:w-64 md:h-64 rounded-full bg-[#003366] border-8 border-[#B8860B] shadow-2xl flex items-center justify-center text-center p-8 transition-all hover:scale-110">
+                                    <span class="text-white font-bold text-3xl md:text-4xl leading-tight tracking-widest uppercase italic">CREATIVE<br>HUB</span>
+                                </div>
+                            </div>
+                            
+                            <div class="w-full h-full flex flex-col md:block">
+                                <div class="md:absolute md:top-0 md:left-0 bg-white shadow-xl p-6 md:p-8 rounded-3xl border-l-[12px] border-[#003366] w-full md:w-[320px] lg:w-[380px] transition-all hover:-translate-y-2 mb-6 md:mb-0">
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <div class="bg-blue-50 p-3 rounded-2xl"><i data-lucide="box" class="w-6 h-6 md:w-8 md:h-8 text-[#003366]"></i></div>
+                                        <h4 class="text-lg md:text-xl font-extrabold text-[#003366] uppercase">1. BRAND / SUB-BRAND</h4>
+                                    </div>
+                                    <p class="text-xs md:text-base text-gray-500 leading-relaxed font-semibold pl-2">Triển khai nội dung Go-to-Market cho BST mới. Đảm bảo đúng định vị thương hiệu.</p>
+                                </div>
+                                
+                                <div class="md:absolute md:top-0 md:right-0 bg-white shadow-xl p-6 md:p-8 rounded-3xl border-r-[12px] md:border-l-0 md:border-r-[12px] border-[#B8860B] w-full md:w-[320px] lg:w-[380px] md:text-right transition-all hover:-translate-y-2 mb-6 md:mb-0">
+                                    <div class="flex items-center gap-4 mb-4 md:flex-row-reverse">
+                                        <div class="bg-amber-50 p-3 rounded-2xl"><i data-lucide="store" class="w-6 h-6 md:w-8 md:h-8 text-[#B8860B]"></i></div>
+                                        <h4 class="text-lg md:text-xl font-extrabold text-[#003366] uppercase">2. RETAIL MKT</h4>
+                                    </div>
+                                    <p class="text-xs md:text-base text-gray-500 leading-relaxed font-semibold md:pr-2">Truyền thông campaign trọng điểm. Đồng bộ nội dung nhất quán trên toàn quốc.</p>
+                                </div>
+                                
+                                <div class="md:absolute md:bottom-0 md:left-0 bg-white shadow-xl p-6 md:p-8 rounded-3xl border-l-[12px] border-[#9A161F] w-full md:w-[320px] lg:w-[380px] transition-all hover:translate-y-2 mb-6 md:mb-0">
+                                    <div class="flex items-center gap-4 mb-4">
+                                        <div class="bg-red-50 p-3 rounded-2xl"><i data-lucide="users" class="w-6 h-6 md:w-8 md:h-8 text-[#9A161F]"></i></div>
+                                        <h4 class="text-lg md:text-xl font-extrabold text-[#003366] uppercase text-left">3. GROWTH - CDP</h4>
+                                    </div>
+                                    <p class="text-xs md:text-base text-gray-500 leading-relaxed font-semibold pl-2">Cá nhân hóa nội dung. May đo Persona tiếp cận chính xác dựa trên dữ liệu CDP.</p>
+                                </div>
+                                
+                                <div class="md:absolute md:bottom-0 md:right-0 bg-white shadow-xl p-6 md:p-8 rounded-3xl border-r-[12px] md:border-l-0 md:border-r-[12px] border-gray-400 w-full md:w-[320px] lg:w-[380px] md:text-right transition-all hover:translate-y-2 mb-6 md:mb-0">
+                                    <div class="flex items-center gap-4 mb-4 md:flex-row-reverse">
+                                        <div class="bg-mouse-pointer-2-p-3 rounded-2xl"><i data-lucide="mouse-pointer-2" class="w-6 h-6 md:w-8 md:h-8 text-gray-600"></i></div>
+                                        <h4 class="text-lg md:text-xl font-extrabold text-[#003366] uppercase">4. OMNI MKT</h4>
+                                    </div>
+                                    <p class="text-xs md:text-base text-gray-500 leading-relaxed font-semibold md:pr-2">Sản xuất nội dung chuyển đổi đa kênh (FB, Zalo, Tab Sale). Tối ưu hóa trải nghiệm số.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TỶ TRỌNG ĐIỀU PHỐI -->
+                    <div class="bg-white rounded-[2.5rem] p-10 md:p-16 shadow-xl border border-gray-100 flex flex-col md:flex-row items-center gap-16">
+                        <div class="md:w-[35%] flex flex-col items-center bg-gray-50/50 p-8 rounded-[3rem] border border-gray-100 w-full">
+                            <div class="text-center mb-8">
+                                <h3 class="font-bold text-[#003366] text-sm md:text-base uppercase tracking-wider mb-2">Tỉ trọng điều phối nội dung Q1/2026</h3>
+                                <div class="w-12 h-1 bg-[#003366]/20 mx-auto rounded-full"></div>
+                            </div>
+                            <div class="relative w-56 h-56 md:w-64 md:h-64 mb-6">
+                                <svg viewBox="0 0 36 36" class="w-full h-full transform -rotate-90">
+                                    <circle cx="18" cy="18" r="15.9" fill="transparent" stroke="#e5e7eb" stroke-width="4"></circle>
+                                    <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#B8860B" stroke-width="4" stroke-dasharray="80.2 19.8"></circle>
+                                    <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#003366" stroke-width="4" stroke-dasharray="14.2 85.8" stroke-dashoffset="-80.2"></circle>
+                                    <circle class="chart-segment" cx="18" cy="18" r="15.9" fill="transparent" stroke="#9ca3af" stroke-width="4" stroke-dasharray="5.6 94.4" stroke-dashoffset="-94.4"></circle>
+                                </svg>
+                                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                                    <span class="text-4xl md:text-5xl font-number text-[#003366]">100%</span>
+                                    <span class="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em] mt-2">Năng suất Hub</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="md:w-[65%] w-full space-y-6">
+                            <h3 class="font-bold text-pnjBlue uppercase text-sm md:text-base tracking-widest mb-6 border-b-2 pb-3">Phân bổ nguồn lực chi tiết</h3>
+                            <div class="group flex items-center justify-between p-6 bg-white rounded-3xl shadow-sm border border-gray-100 transition-all hover:border-[#B8860B]/30 hover:shadow-md">
+                                <div class="flex items-center gap-6">
+                                    <div class="w-5 h-5 rounded-full bg-[#B8860B] shadow-sm"></div>
+                                    <div>
+                                        <span class="text-sm md:text-base font-bold text-[#003366] uppercase">OMNI MKT</span>
+                                        <p class="text-[10px] md:text-xs text-gray-400 font-medium mt-1">Hỗ trợ các chiến dịch trọng điểm & thông điệp chính (Campaign 8/3)</p>
+                                    </div>
+                                </div>
+                                <span class="font-number text-[#B8860B] text-3xl md:text-4xl">80.2%</span>
+                            </div>
+                            <div class="group flex items-center justify-between p-6 bg-white rounded-3xl shadow-sm border border-gray-100 transition-all hover:border-[#003366]/30 hover:shadow-md">
+                                <div class="flex items-center gap-6">
+                                    <div class="w-5 h-5 rounded-full bg-[#003366] shadow-sm"></div>
+                                    <div>
+                                        <span class="text-sm md:text-base font-bold text-[#003366] uppercase">Brand / Sub-Brand</span>
+                                        <p class="text-[10px] md:text-xs text-gray-400 font-medium mt-1">Phát triển nội dung Go-to-Market cho các Bộ sưu tập mới</p>
+                                    </div>
+                                </div>
+                                <span class="font-number text-[#003366] text-3xl md:text-4xl">14.2%</span>
+                            </div>
+                            <div class="group flex items-center justify-between p-6 bg-white rounded-3xl shadow-sm border border-gray-100 transition-all hover:border-gray-300 hover:shadow-md">
+                                <div class="flex items-center gap-6">
+                                    <div class="w-5 h-5 rounded-full bg-[#9ca3af] shadow-sm"></div>
+                                    <div>
+                                        <span class="text-sm md:text-base font-bold text-gray-600 uppercase">Retail & Omni Growth</span>
+                                        <p class="text-[10px] md:text-xs text-gray-400 font-medium mt-1">Tối ưu hóa dữ liệu khách hàng & Cá nhân hóa trải nghiệm (CDP)</p>
+                                    </div>
+                                </div>
+                                <span class="font-number text-gray-500 text-3xl md:text-4xl">5.6%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SUB-TAB 3: HỖ TRỢ TRUYỀN THÔNG GTM -->
+            <section id="sub-gtm" class="sub-content hidden fade-in-section">
+                <div class="text-center mb-10 px-2">
+                    <h2 class="font-serif-vi text-2xl md:text-4xl text-[#003366] font-bold uppercase mb-2">HỖ TRỢ TRUYỀN THÔNG GTM</h2>
+                    <p class="font-sans-vi text-[#B8860B] font-bold text-[10px] md:text-sm tracking-widest uppercase leading-tight italic">Go-to-market BST mới & Chiến dịch trọng điểm</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <!-- PNJ BLOG CARD -->
+                    <div class="bg-white rounded-[3rem] p-8 md:p-10 shadow-xl border border-gray-100 flex flex-col transition-all hover:shadow-2xl">
+                        <div class="bg-blue-50/50 rounded-2xl p-6 mb-8 text-center border border-blue-100">
+                            <h3 class="font-bold text-[#003366] text-4xl font-number italic mb-1 tracking-tight">PNJ Blog</h3>
+                        </div>
+                        <ul class="space-y-4 mb-6 px-2">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-[#B8860B] shrink-0 mt-0.5"></i>
+                                <p class="text-sm text-gray-600 leading-relaxed font-medium">Phủ nội dung cho 5 sub-brand (<span class="text-pnjBlue font-bold italic">STYLE by PNJ, Disney|PNJ, PNJ &lt;3 Hello Kitty, PNJ Watch, MANCODE by PNJ</span>).</p>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-[#B8860B] shrink-0 mt-0.5"></i>
+                                <p class="text-sm text-gray-600 leading-relaxed font-medium">Duy trì traffic nền tảng ổn định, chuyển đổi từ <span class="text-pnjBlue font-bold">'peak traffic'</span> sang <span class="text-pnjBlue font-bold">'xây nền nội dung'</span>.</p>
+                            </li>
+                        </ul>
+                        <div class="mb-8 px-2">
+                            <div class="relative group/blog">
+                                <button onclick="scrollSlider('blog-slider', 'left')" class="floating-nav-btn absolute -left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-[#003366]">
+                                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                </button>
+                                <div id="blog-slider" class="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth">
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/ke1xdhefgh73vhzygmd0.png" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249185/pvub4pwz8b17pkqp9mb9.png" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/mcnahtsqr4sb7acqek4o.jpg" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/ofc9hit7kfvkobtwck9c.png" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                </div>
+                                <button onclick="scrollSlider('blog-slider', 'right')" class="floating-nav-btn absolute -right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-[#003366]">
+                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- FOOTER STATS PNJ BLOG -->
+                        <div class="border-t border-gray-100 pt-6 mt-auto flex flex-col gap-6">
+                            <!-- Duy trì Traffic (Centered, Single Line) -->
+                            <div class="w-full flex justify-center">
+                                <div class="bg-[#F9F1E5] px-6 py-3 rounded-2xl text-lg md:text-xl font-bold text-[#003366] border-2 border-[#B8860B]/30 shadow-sm text-center whitespace-nowrap overflow-hidden">
+                                    Duy trì 82% traffic so với tháng 12/2025
+                                </div>
+                            </div>
+                            
+                            <!-- Detailed Stats -->
+                            <div class="flex items-end justify-between px-2">
+                                <div class="space-y-1">
+                                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Tổng lượt xem nội dung</p>
+                                    <span class="text-4xl md:text-5xl font-number text-[#B8860B]">13,575</span>
+                                </div>
+                                <div class="text-right space-y-1">
+                                    <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Hiệu suất sản xuất</p>
+                                    <div class="flex items-center justify-end gap-2 text-pnjGold">
+                                        <i data-lucide="file-text" class="w-6 h-6"></i>
+                                        <span class="text-2xl md:text-3xl font-number">11 Bài Blog</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ZALO BROADCAST CARD -->
+                    <div class="bg-white rounded-[3rem] p-8 md:p-10 shadow-xl border border-gray-100 flex flex-col transition-all hover:shadow-2xl">
+                        <div class="bg-[#FDF6E9] rounded-2xl p-6 mb-8 text-center border border-[#FBE9D0]">
+                            <h3 class="font-bold text-[#B8860B] text-4xl font-number italic mb-1 tracking-tight">Zalo Broadcast</h3>
+                        </div>
+                        <ul class="space-y-5 mb-10 flex-grow px-2">
+                            <li class="flex items-start gap-4">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-[#003366] shrink-0 mt-0.5"></i>
+                                <p class="text-sm md:text-base text-gray-600 leading-relaxed font-medium"><span class="text-pnjBlue font-bold italic">Ổn định tương tác sau cao điểm </span>Xuân - Valetine - Thần Tài.</p>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-[#003366] shrink-0 mt-0.5"></i>
+                                <p class="text-sm md:text-base text-gray-600 leading-relaxed font-medium">Hỗ trợ điều hướng traffic về website & thúc đẩy bán hàng.</p>
+                            </li>
+                        </ul>
+                        <div class="mb-8 px-2">
+                            <div class="relative group/zalo">
+                                <button onclick="scrollSlider('zalo-slider', 'left')" class="floating-nav-btn absolute -left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-[#003366]">
+                                    <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                                </button>
+                                <div id="zalo-slider" class="flex gap-3 overflow-x-auto no-scrollbar snap-x snap-mandatory scroll-smooth">
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249187/hfvdxcupakvuxzqjzpx4.jpg" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/xoxnr1oe0dpdaohjfgzb.jpg" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                    <div class="min-w-[85%] md:min-w-[75%] snap-center"><img src="https://res.cloudinary.com/dhe7uziws/image/upload/v1776249186/q8idiibzz7c2ql4fteil.jpg" class="w-full aspect-[4/3] object-cover rounded-2xl border border-gray-100 shadow-sm"></div>
+                                </div>
+                                <button onclick="scrollSlider('zalo-slider', 'right')" class="floating-nav-btn absolute -right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full flex items-center justify-center text-[#003366]">
+                                    <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 border-t border-gray-100 pt-8 mt-auto">
+                            <div class="space-y-1">
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Reach (Followers)</p>
+                                <span class="text-3xl font-number text-[#003366]">~490K</span>
+                            </div>
+                            <div class="text-right space-y-1">
+                                <p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider">Lượt xem bài viết</p>
+                                <span class="text-3xl font-number text-[#9A161F]">46,643</span>
+                            </div>
+                        </div>
+                        <div class="mt-6 bg-green-50 p-4 rounded-2xl border border-green-100 flex items-center justify-center gap-3">
+                            <div class="bg-white p-1.5 rounded-full shadow-sm">
+                                <i data-lucide="trending-up" class="w-5 h-5 text-green-600"></i>
+                            </div>
+                            <span class="text-xs md:text-sm font-bold text-green-700 uppercase tracking-tight">Tăng trưởng +73% so với Tháng 12/2025</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
     </div>
     
     <!-- Footer -->
@@ -796,7 +1237,10 @@
             const activePanel = document.getElementById(teamTabId);
             activePanel.classList.remove('hidden');
             activePanel.classList.add('block');
-            setTimeout(() => activePanel.classList.add('is-visible'), 50);
+            setTimeout(() => {
+                activePanel.classList.add('is-visible');
+                activePanel.querySelectorAll('.fade-in-section').forEach(el => el.classList.add('is-visible'));
+            }, 50);
 
             const activeBtn = document.getElementById('btn-' + teamTabId);
             activeBtn.classList.remove('bg-transparent', 'text-[#003366]', 'hover:bg-white/60');
@@ -824,28 +1268,42 @@
             activeBtn.classList.add('bg-[#003366]', 'text-white', 'shadow-lg');
         }
 
-        function switchContentTab(tabId) {
-            document.querySelectorAll('.content-sub-panel').forEach(panel => {
+        // Fix ReferenceError: switchSubTab is not defined
+        function switchSubTab(subTabId) {
+            // Hide all sub-content panels
+            document.querySelectorAll('.sub-content').forEach(panel => {
                 panel.classList.add('hidden');
                 panel.classList.remove('block', 'is-visible');
             });
 
-            document.querySelectorAll('#btn-content-blog, #btn-content-zalo').forEach(btn => {
-                btn.classList.remove('bg-[#B8860B]', 'text-white', 'shadow-md');
-                btn.classList.add('bg-transparent', 'text-gray-600', 'hover:bg-gray-50');
+            // Reset sub-tab buttons style
+            document.querySelectorAll('#btn-sub-zalo, #btn-sub-hub, #btn-sub-gtm').forEach(btn => {
+                btn.classList.remove('sub-tab-active');
+                btn.classList.add('bg-white', 'text-[#003366]');
             });
 
-            const activePanel = document.getElementById(tabId);
-            activePanel.classList.remove('hidden');
-            activePanel.classList.add('block');
-            setTimeout(() => {
-                activePanel.style.transitionDelay = '0ms'; 
-                activePanel.classList.add('is-visible');
-            }, 50);
+            // Show active sub-content
+            const activePanel = document.getElementById(subTabId);
+            if (activePanel) {
+                activePanel.classList.remove('hidden');
+                activePanel.classList.add('block');
+                setTimeout(() => activePanel.classList.add('is-visible'), 50);
+            }
 
-            const activeBtn = document.getElementById('btn-' + tabId);
-            activeBtn.classList.remove('bg-transparent', 'text-gray-600', 'hover:bg-gray-50');
-            activeBtn.classList.add('bg-[#B8860B]', 'text-white', 'shadow-md');
+            // Highlight active button
+            const activeBtn = document.getElementById('btn-' + subTabId);
+            if (activeBtn) {
+                activeBtn.classList.add('sub-tab-active');
+                activeBtn.classList.remove('bg-white', 'text-[#003366]');
+            }
+        }
+
+        // Fix ReferenceError: scrollSlider is not defined
+        function scrollSlider(id, direction) {
+            const slider = document.getElementById(id);
+            if (!slider) return;
+            const scrollAmount = direction === 'left' ? -300 : 300;
+            slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         }
     </script>
 </body>
